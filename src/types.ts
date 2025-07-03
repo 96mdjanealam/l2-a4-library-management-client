@@ -7,3 +7,17 @@ export interface IBook {
   copies: number;
   available: boolean;
 }
+
+export interface IBookInput {
+  title: string;
+  author: string;
+  genre:
+    | "FICTION"
+    | "NON_FICTION"
+    | "SCIENCE"
+    | "HISTORY"
+    | "BIOGRAPHY"
+    | "FANTASY";
+  isbn: string;
+  copies: number;
+}
