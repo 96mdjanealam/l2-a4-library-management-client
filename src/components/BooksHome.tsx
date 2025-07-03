@@ -57,7 +57,7 @@ const BooksHome = () => {
               type="button"
               className="flex items-center justify-center gap-2 w-1/3 py-3  px-2"
             >
-              <HandHelping size={22} className="md:hidden lg:block"/>
+              <HandHelping size={18} className="md:hidden lg:block"/>
               Borrow
             </button>
           </div>
