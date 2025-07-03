@@ -1,6 +1,6 @@
 import { BookA, Menu } from "lucide-react";
 import { useRef } from "react";
-import { Link } from "react-router";
+import { Link, NavLink } from "react-router";
 
 const Navbar = () => {
   const mobileMenuRef = useRef<HTMLDivElement>(null);
@@ -24,11 +24,9 @@ const Navbar = () => {
             All Books
           </a>
         </li>
-        <li>
-          <a className="hover:text-white/70 transition" href="#">
+         <NavLink to={"/create-book"} className="hover:text-white/70 transition">
             Add Book
-          </a>
-        </li>
+         </NavLink>
         <li>
           <a className="hover:text-white/70 transition" href="#">
             Borrow Summary
