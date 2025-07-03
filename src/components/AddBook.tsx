@@ -4,9 +4,12 @@ import {
   BookMarked,
   UserPen,
   Barcode,
+  LetterText,
 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import type { IBookInput } from "../types";
+import { useCreateBookMutation } from "../redux/api/baseApi";
+import toast from "react-hot-toast";
 
 const AddBook = () => {
   const {
@@ -16,9 +19,18 @@ const AddBook = () => {
     reset,
   } = useForm<IBookInput>();
 
-  const onSubmit = (data: IBookInput) => {
-    console.log("Submitted book data:", data);
-    reset();
+  const [createBook, { isLoading }] = useCreateBookMutation();
+
+  const onSubmit = async (data: IBookInput) => {
+    try {
+      const res = await createBook(data).unwrap();
+      if (res.success) {
+        toast.success("Book created successfully!");
+      }
+      reset();
+    } catch (error) {
+      console.error("Failed to create book:", error);
+    }
   };
 
   return (
@@ -132,15 +144,42 @@ const AddBook = () => {
           />
         </div>
         {errors.copies && (
-          <p className="text-red-500 text-xs">{errors.copies.message}</p>
+          <p className="text-red-500 text-xs mb-2">{errors.copies.message}</p>
         )}
+
+        {/* Description */}
+        <label htmlFor="description" className="font-medium mt-4">
+          Description
+        </label>
+        <div className="mt-2 mb-4">
+          <div className="flex items-start gap-2 border border-slate-300 rounded-2xl focus-within:ring-2 focus-within:ring-indigo-400 transition-all px-3 py-2">
+            <LetterText className="w-5 text-slate-500" />
+            <textarea
+              id="description"
+              placeholder="Enter book description here"
+              className="w-full outline-none bg-transparent resize-none text-sm"
+              rows={3}
+              {...register("description", {
+                required: "Description is required",
+              })}
+            />
+          </div>
+          {errors.description && (
+            <p className="text-red-500 text-xs">{errors.description.message}</p>
+          )}
+        </div>
 
         {/* Submit */}
         <button
           type="submit"
-          className="flex items-center cursor-pointer justify-center gap-1 mt-5 bg-indigo-500 hover:bg-indigo-600 text-white py-2.5 w-full rounded-full transition"
+          disabled={isLoading}
+          className={`flex items-center justify-center gap-1 mt-5 py-2.5 w-full rounded-full transition ${
+            isLoading
+              ? "bg-indigo-300 cursor-not-allowed"
+              : "bg-indigo-500 hover:bg-indigo-600 text-white"
+          }`}
         >
-          Submit Form
+          {isLoading ? "Submitting..." : "Submit Form"}
           <ArrowRight size={20} className="ml-2" />
         </button>
       </div>

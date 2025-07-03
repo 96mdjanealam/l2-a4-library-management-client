@@ -54,9 +54,9 @@ const Navbar = () => {
             </a>
           </li>
           <li>
-            <a href="#" className="text-sm">
+            <NavLink to={"/create-book"}  className="text-sm">
               Add Book
-            </a>
+            </NavLink>
           </li>
           <li>
             <a href="#" className="text-sm">

@@ -19,5 +19,6 @@ export interface IBookInput {
     | "BIOGRAPHY"
     | "FANTASY";
   isbn: string;
+  description: string;
   copies: number;
 }
