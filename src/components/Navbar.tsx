@@ -1,8 +1,8 @@
-import { useRef } from 'react'
+import { Menu } from "lucide-react";
+import { useRef } from "react";
 
 const Navbar = () => {
-
-     const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   const toggleMobileMenu = () => {
     if (mobileMenuRef.current) {
@@ -21,18 +21,22 @@ const Navbar = () => {
       </a>
 
       <ul className="text-white md:flex hidden items-center gap-10">
-        <li><a className="hover:text-white/70 transition" href="#">Home</a></li>
-        <li><a className="hover:text-white/70 transition" href="#">Services</a></li>
-        <li><a className="hover:text-white/70 transition" href="#">Portfolio</a></li>
-        <li><a className="hover:text-white/70 transition" href="#">Pricing</a></li>
+        <li>
+          <a className="hover:text-white/70 transition" href="#">
+            All Books
+          </a>
+        </li>
+        <li>
+          <a className="hover:text-white/70 transition" href="#">
+            Add Book
+          </a>
+        </li>
+        <li>
+          <a className="hover:text-white/70 transition" href="#">
+            Borrow Summary
+          </a>
+        </li>
       </ul>
-
-      <button
-        type="button"
-        className="bg-white text-gray-700 md:inline hidden text-sm hover:opacity-90 active:scale-95 transition-all w-40 h-11 rounded-full"
-      >
-        Get started
-      </button>
 
       <button
         aria-label="menu-btn"
@@ -40,9 +44,7 @@ const Navbar = () => {
         className="menu-btn inline-block md:hidden active:scale-90 transition"
         onClick={toggleMobileMenu}
       >
-        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="#fff">
-          <path d="M3 7a1 1 0 1 0 0 2h24a1 1 0 1 0 0-2zm0 7a1 1 0 1 0 0 2h24a1 1 0 1 0 0-2zm0 7a1 1 0 1 0 0 2h24a1 1 0 1 0 0-2z" />
-        </svg>
+        <Menu className="text-white" size={30} />
       </button>
 
       <div
@@ -50,20 +52,25 @@ const Navbar = () => {
         className="mobile-menu absolute top-[70px] left-0 w-full bg-gradient-to-r from-indigo-700 to-violet-500 p-6 hidden md:hidden"
       >
         <ul className="flex flex-col space-y-4 text-white text-lg">
-          <li><a href="#" className="text-sm">Home</a></li>
-          <li><a href="#" className="text-sm">Services</a></li>
-          <li><a href="#" className="text-sm">Portfolio</a></li>
-          <li><a href="#" className="text-sm">Pricing</a></li>
+          <li>
+            <a href="#" className="text-sm">
+              All Books
+            </a>
+          </li>
+          <li>
+            <a href="#" className="text-sm">
+              Add Book
+            </a>
+          </li>
+          <li>
+            <a href="#" className="text-sm">
+              Borrow Summary
+            </a>
+          </li>
         </ul>
-        <button
-          type="button"
-          className="bg-white text-gray-700 mt-6 inline md:hidden text-sm hover:opacity-90 active:scale-95 transition-all w-40 h-11 rounded-full"
-        >
-          Get started
-        </button>
       </div>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
