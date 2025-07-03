@@ -1,5 +1,6 @@
-import { Menu } from "lucide-react";
+import { BookA, Menu } from "lucide-react";
 import { useRef } from "react";
+import { Link } from "react-router";
 
 const Navbar = () => {
   const mobileMenuRef = useRef<HTMLDivElement>(null);
@@ -12,13 +13,10 @@ const Navbar = () => {
 
   return (
     <nav className="h-[70px] relative w-full px-6 md:px-16 lg:px-24 xl:px-32 flex items-center justify-between z-30 bg-gradient-to-r from-indigo-700 to-violet-500 transition-all">
-      <a href="#">
-        <img
-          className="h-9"
-          src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/dummyLogo/dummyLogoWhite.svg"
-          alt="dummyLogoWhite"
-        />
-      </a>
+      <Link to={"/"} className="flex gap-2 items-center">
+        <BookA className="text-white" />
+        <h1 className="text-lg text-white font-bold">BookSync</h1>
+      </Link>
 
       <ul className="text-white md:flex hidden items-center gap-10">
         <li>
