@@ -19,11 +19,10 @@ const Navbar = () => {
       </Link>
 
       <ul className="text-white md:flex hidden items-center gap-10">
-        <li>
-          <a className="hover:text-white/70 transition" href="#">
+        
+         <NavLink to={"/all-books"} className="hover:text-white/70 transition">
             All Books
-          </a>
-        </li>
+         </NavLink>
          <NavLink to={"/create-book"} className="hover:text-white/70 transition">
             Add Book
          </NavLink>
@@ -49,9 +48,9 @@ const Navbar = () => {
       >
         <ul className="flex flex-col space-y-4 text-white text-lg">
           <li>
-            <a href="#" className="text-sm">
+            <NavLink to={"/all-books"} className="text-sm">
               All Books
-            </a>
+            </NavLink>
           </li>
           <li>
             <NavLink to={"/create-book"}  className="text-sm">
@@ -59,9 +58,9 @@ const Navbar = () => {
             </NavLink>
           </li>
           <li>
-            <a href="#" className="text-sm">
-              Borrow Summary
-            </a>
+            <NavLink to={"/borrow-summary"}  className="text-sm">
+               Borrow Summary
+            </NavLink>
           </li>
         </ul>
       </div>

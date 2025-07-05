@@ -2,6 +2,7 @@ import { Outlet } from "react-router";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { Toaster } from "react-hot-toast";
+import { Toaster as Permission } from "sonner";
 
 function App() {
   return (
@@ -12,6 +13,16 @@ function App() {
       </div>
       <Footer />
       <Toaster />
+      <Permission
+        toastOptions={{
+          style: {},
+          actionButtonStyle: {
+            backgroundColor: "#ef4444",
+            color: "#fff",
+          },
+        }}
+        position="top-center"
+      />
     </div>
   );
 }

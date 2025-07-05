@@ -9,8 +9,8 @@ import BorrowForm from "./BorrowForm";
 import { toast as permission } from "sonner";
 import toast from "react-hot-toast";
 
-const BooksHome = () => {
-  const { data, isLoading } = useGetBooksQuery(12);
+const AllBooks = () => {
+  const { data, isLoading } = useGetBooksQuery(0);
   const [deleteBook] = useDeleteBookMutation();
   const [selectedBookId, setSelectedBookId] = useState<string | null>(null);
   const [borrowBookId, setBorrowBookId] = useState<string | null>(null);
@@ -126,4 +126,4 @@ const BooksHome = () => {
   );
 };
 
-export default BooksHome;
+export default AllBooks;

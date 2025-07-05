@@ -8,10 +8,30 @@ import {
 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import type { IBookInput } from "../types";
-import { useCreateBookMutation } from "../redux/api/baseApi";
+import { useEditBookMutation, useGetBookByIdQuery } from "../redux/api/baseApi";
+import { useParams } from "react-router";
+import Spinner from "./Spinner";
+import { useEffect, useMemo } from "react";
 import toast from "react-hot-toast";
 
-const AddBook = () => {
+const EditBook = () => {
+  // const navigate = useNavigate();
+  const params = useParams();
+  const { data, isLoading } = useGetBookByIdQuery(params.id);
+  const book = data?.data;
+  const [editBook, { isLoading: isEditing }] = useEditBookMutation();
+  const oldData = useMemo(() => {
+    if (!book) return null;
+    return {
+      title: book.title,
+      author: book.author,
+      genre: book.genre,
+      isbn: book.isbn,
+      copies: book.copies,
+      description: book.description,
+    };
+  }, [book]);
+
   const {
     register,
     handleSubmit,
@@ -19,31 +39,50 @@ const AddBook = () => {
     reset,
   } = useForm<IBookInput>();
 
-  const [createBook, { isLoading }] = useCreateBookMutation();
+  useEffect(() => {
+    if (book) {
+      reset({
+        title: book.title,
+        author: book.author,
+        genre: book.genre,
+        isbn: book.isbn,
+        copies: book.copies,
+        description: book.description,
+      });
+    }
+  }, [book, reset]);
 
-  const onSubmit = async (data: IBookInput) => {
-    console.log(data);
+  const onSubmit = async (formData: IBookInput) => {
+    if (JSON.stringify(formData) === JSON.stringify(oldData)) {
+      toast.error("No changes made!");
+      return;
+    }
+
     try {
-      const res = await createBook(data);
-      console.log("res", res);
+      const res = await editBook({
+        id: params.id,
+        bookData: formData,
+      });
 
       if (res?.data?.success) {
         toast.success(res.data.message);
       } else {
-        toast.error("Failed to create book");
+        toast.error("Failed to update book");
       }
-
-      reset();
     } catch (error) {
       if (error instanceof Error) {
         toast.error(error.message);
-        console.error("Failed to create book:", error.message);
+        console.error("Failed to update book:", error.message);
       } else {
-        toast.error("Failed to create book");
+        toast.error("Failed to update book");
         console.error("Unknown error:", error);
       }
     }
   };
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <form
@@ -51,11 +90,11 @@ const AddBook = () => {
       className="flex flex-col items-center text-sm text-slate-800 py-20"
     >
       <p className="text-xs bg-indigo-200 text-indigo-600 font-medium px-3 py-1 rounded-full">
-        Add a new book
+        Edit the book info
       </p>
-      <h1 className="text-4xl font-bold py-4 text-center">Insert a New Tale</h1>
+      <h1 className="text-4xl font-bold py-4 text-center">{book.title}</h1>
       <p className="max-md:text-sm text-gray-500 pb-10 text-center">
-        Every great story deserves a spot — log your book below.
+        Fill out the form below and update the book information.
       </p>
 
       <div className="max-w-96 w-full px-4">
@@ -162,35 +201,33 @@ const AddBook = () => {
         <label htmlFor="description" className="font-medium mt-4">
           Description
         </label>
-        <div className="mt-2 mb-4">
-          <div className="flex items-start gap-2 border border-slate-300 rounded-2xl focus-within:ring-2 focus-within:ring-indigo-400 transition-all px-3 py-2">
-            <LetterText className="w-5 text-slate-500" />
-            <textarea
-              id="description"
-              placeholder="Enter book description here"
-              className="w-full outline-none bg-transparent resize-none text-sm"
-              rows={3}
-              {...register("description", {
-                required: "Description is required",
-              })}
-            />
-          </div>
-          {errors.description && (
-            <p className="text-red-500 text-xs">{errors.description.message}</p>
-          )}
+        <div className="flex items-start mt-2 mb-4 gap-2 border border-slate-300 rounded-2xl focus-within:ring-2 focus-within:ring-indigo-400 transition-all px-3 py-2">
+          <LetterText className="w-5 text-slate-500" />
+          <textarea
+            id="description"
+            placeholder="Enter book description here"
+            className="w-full outline-none bg-transparent resize-none text-sm"
+            rows={3}
+            {...register("description", {
+              required: "Description is required",
+            })}
+          />
         </div>
+        {errors.description && (
+          <p className="text-red-500 text-xs">{errors.description.message}</p>
+        )}
 
         {/* Submit */}
         <button
           type="submit"
-          disabled={isLoading}
+          disabled={isEditing}
           className={`flex items-center justify-center gap-1 mt-5 py-2.5 w-full rounded-full transition ${
-            isLoading
+            isEditing
               ? "bg-indigo-300 cursor-not-allowed"
               : "bg-indigo-500 hover:bg-indigo-600 text-white"
           }`}
         >
-          {isLoading ? "Submitting..." : "Submit Form"}
+          {isEditing ? "Submitting..." : "Update info"}
           <ArrowRight size={20} className="ml-2" />
         </button>
       </div>
@@ -198,4 +235,4 @@ const AddBook = () => {
   );
 };
 
-export default AddBook;
+export default EditBook;

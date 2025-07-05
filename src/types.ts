@@ -22,3 +22,13 @@ export interface IBookInput {
   description: string;
   copies: number;
 }
+
+export interface IBorrow {
+  quantity: number;
+  dueDate: string;
+}
+
+export interface IBorrowSummary {
+  book: { title: string; isbn: string };
+  totalQuantity: number;
+}
