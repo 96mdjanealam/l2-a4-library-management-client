@@ -19,17 +19,26 @@ const Navbar = () => {
       </Link>
 
       <ul className="text-white md:flex hidden items-center gap-10">
-        
-         <NavLink to={"/all-books"} className="hover:text-white/70 transition">
-            All Books
-         </NavLink>
-         <NavLink to={"/create-book"} className="hover:text-white/70 transition">
-            Add Book
-         </NavLink>
         <li>
-          <a className="hover:text-white/70 transition" href="#">
+          <NavLink to={"/all-books"} className="hover:text-white/70 transition">
+            All Books
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to={"/create-book"}
+            className="hover:text-white/70 transition"
+          >
+            Add Book
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to={"/borrow-summary"}
+            className="hover:text-white/70 transition"
+          >
             Borrow Summary
-          </a>
+          </NavLink>
         </li>
       </ul>
 
@@ -53,13 +62,13 @@ const Navbar = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/create-book"}  className="text-sm">
+            <NavLink to={"/create-book"} className="text-sm">
               Add Book
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/borrow-summary"}  className="text-sm">
-               Borrow Summary
+            <NavLink to={"/borrow-summary"} className="text-sm">
+              Borrow Summary
             </NavLink>
           </li>
         </ul>

@@ -10,8 +10,8 @@ const Footer = () => {
           <h1 className="text-xl text-white font-bold">BookSync</h1>
         </Link>
         <p className="text-center max-w-xl text-sm font-normal leading-relaxed">
-          Empowering creators worldwide with the most advanced AI content
-          creation tools. Transform your ideas into reality.
+          Designed to simplify how libraries and organizations handle book
+          lending, availability, and inventory updates in real-time.
         </p>
       </div>
       <div className="border-t border-[#3B1A7A]">

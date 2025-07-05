@@ -10,6 +10,11 @@ const BorrowSummary = () => {
 
   return (
     <div className="overflow-x-auto w-full py-20 px-3 md:px-16 lg:px-24 xl:px-32">
+      <div className="flex justify-center mb-8">
+        <p className="text-xs w-fit bg-indigo-200 text-indigo-600 font-medium px-3 py-1 rounded-full">
+          Borrow Summary
+        </p>
+      </div>
       <div className="border border-gray-300 rounded-md overflow-hidden">
         <table className="min-w-full text-sm text-left">
           <thead className="bg-gray-100 text-gray-700 border-b border-gray-300 uppercase">
@@ -25,7 +30,9 @@ const BorrowSummary = () => {
               <tr
                 key={index}
                 className={`hover:bg-gray-50 ${
-                  borrowedBooks.length === index + 1 ? "" : "border-b border-gray-300"
+                  borrowedBooks.length === index + 1
+                    ? ""
+                    : "border-b border-gray-300"
                 } `}
               >
                 <td className="px-4 py-2">{index + 1}</td>

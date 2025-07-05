@@ -1,69 +1,110 @@
-# React + TypeScript + Vite
+# 📚 BookSync
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern Library Management System designed to manage books and borrowing records in a simple and scalable library system, built using React 19, Redux Toolkit, React Router v7, and styled with Tailwind CSS. Designed for high performance and an optimized developer experience using Vite and TypeScript.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📘 Introduction
 
-## Expanding the ESLint configuration
+This project is the **client-side** of a Library Management System. It allows users to browse, borrow, and manage library items. The application uses modern React paradigms like hooks, functional components, and centralized state management via Redux Toolkit.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## ✨ Features
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+* ⚛️ Built with React 19 and TypeScript
+* 📦 State management using Redux Toolkit
+* 📄 Form handling via React Hook Form
+* 🔥 Toast notifications with `react-hot-toast` and `sonner`
+* 🌐 Routing powered by React Router v7
+* 💨 Utility-first styling with Tailwind CSS
+* ⚡ Fast dev experience with Vite
+* ✅ Linting with ESLint
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+## 💾 Installation
+
+```bash
+# Clone the repository
+git clone <your-repo-url>
+cd l2-a4-library-management-client
+
+# Install dependencies
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## ▶️ Usage
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Development Server
+
+```bash
+npm run dev
 ```
+
+Starts the development server using **Vite**.
+
+### Build for Production
+
+```bash
+npm run build
+```
+
+Builds the project with **TypeScript** and **Vite**.
+
+### Preview Production Build
+
+```bash
+npm run preview
+```
+
+Serves the production build locally.
+
+### Lint the Codebase
+
+```bash
+npm run lint
+```
+
+Runs ESLint on the project files.
+
+---
+
+## 📦 Dependencies
+
+**Runtime:**
+
+* `react` ^19.1.0
+* `react-dom` ^19.1.0
+* `react-router` ^7.6.3
+* `@reduxjs/toolkit` ^2.8.2
+* `react-redux` ^9.2.0
+* `react-hook-form` ^7.59.0
+* `react-hot-toast` ^2.5.2
+* `sonner` ^2.0.6
+* `tailwindcss` ^4.1.11
+* `@tailwindcss/vite` ^4.1.11
+* `lucide-react` ^0.525.0
+
+**Development:**
+
+* `vite` ^7.0.0
+* `typescript` \~5.8.3
+* `eslint`, `eslint-plugin-react-hooks`, `eslint-plugin-react-refresh`
+* `@vitejs/plugin-react`
+* `@types/react`, `@types/react-dom`
+* `typescript-eslint`
+
+---
+
+## ⚙️ Configuration
+
+This project uses:
+
+* **Vite** for build and dev server
+* **TypeScript** for static typing
+* **ESLint** for linting (`.eslintrc` should be configured)
+* **Tailwind CSS** via `@tailwindcss/vite` plugin
+* **Redux Toolkit** for global state

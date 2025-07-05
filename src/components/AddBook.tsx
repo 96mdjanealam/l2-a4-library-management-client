@@ -10,8 +10,10 @@ import { useForm } from "react-hook-form";
 import type { IBookInput } from "../types";
 import { useCreateBookMutation } from "../redux/api/baseApi";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router";
 
 const AddBook = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -29,6 +31,7 @@ const AddBook = () => {
 
       if (res?.data?.success) {
         toast.success(res.data.message);
+        navigate("/all-books");
       } else {
         toast.error("Failed to create book");
       }
