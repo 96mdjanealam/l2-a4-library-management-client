@@ -27,7 +27,7 @@ This project is the **client-side** of a Library Management System. It allows us
 
 ```bash
 # Clone the repository
-git clone <your-repo-url>
+git clone https://github.com/96mdjanealam/l2-a4-library-management-client.git
 cd l2-a4-library-management-client
 
 # Install dependencies
